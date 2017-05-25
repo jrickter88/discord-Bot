@@ -46,35 +46,35 @@ bot.on('ready', () => {
   console.log('I am ready!');
   
   fs.readFile('./keys.txt', 'utf8', function (err,data) {
-  if (err) {
+	if (err) {
     return console.log(err);
-  }
-   var hashkey = data;
+	}
+	var hashkey = data;
   
   
-  var sethashkey = hashkey.split(/\r?\n/);
+	var sethashkey = hashkey.split(/\r?\n/);
   
-	fs.readFile('./phrases.txt', 'utf8', function (err2,data2) {
-  if (err2) {
-    return console.log(err);
-  }
+		fs.readFile('./phrases.txt', 'utf8', function (err2,data2) {
+			if (err2) {
+			return console.log(err);
+			}
 
-  var hashphrase = data2;
+			var hashphrase = data2;
   
-  var sethashphrase = hashphrase.split(/\r?\n/);
+			var sethashphrase = hashphrase.split(/\r?\n/);
 
   
-  for (var i in sethashphrase){
+			for (var i in sethashphrase){
 	  
-	  HashTable.set(sethashkey[i], sethashphrase[i]);
+				HashTable.set(sethashkey[i], sethashphrase[i]);
 	 // console.log(sethashkey[i], sethashphrase[i]);
 	  
-  }
+			}
 	
-});
+		});
 
   
-});
+	});
 
 });
 
@@ -93,27 +93,23 @@ bot.on('message', message => {
 	message.content = (message.content).toLowerCase();
 	var temp_mem = message.member;
 	
-	try 
-	{
-    var mem_id = message.member.voiceChannel.id;
+	try {
+		var mem_id = message.member.voiceChannel.id;
 	}
 	
-	catch(err)
-	{
+	catch(err)	{
     var mem_id = undefined;
 	}
 
 	
-	if (message.author.bot === true)
-	{
+	if (message.author.bot === true){
 		
 		
 		console.log('ignoring Bot');
 	
 	}
 	
-	if (message.channel.type == 'dm')
-	{
+	if (message.channel.type == 'dm'){
 		
 		
 		console.log('ignoring private message from::: ' + message.channel.recipient.username + ": message::: " + message.content);
@@ -133,15 +129,15 @@ bot.on('message', message => {
 				console.log("Permission granted");
 	
 					
-		if (message.content === "&init")
-		{
+				if (message.content === "&init")
+					{
 			
-			current_channel = bot.channels.get('254127484843458563');
+					current_channel = bot.channels.get('254127484843458563');
+				
+					current_channel.join();
 			
-			current_channel.join();
 			
-			
-		}
+					}
 		if (message.content === "&join" && mem_id !== '254127484843458563') {
 		current_channel = message.member.voiceChannel;
 		console.log(message.member.voiceChannel.id);
@@ -153,7 +149,7 @@ bot.on('message', message => {
 			else{
 			current_channel.join()
 			}
-			}
+		}
 		
 		
 		if (message.content === "&gtfo" && current_channel != undefined){
@@ -165,17 +161,17 @@ bot.on('message', message => {
 		
 		if (message.content === "&btfo" && inVoice === 0 && mem_id !== '254127484843458563' && message.member.voiceChannel != undefined) {
 
-		console.log(message.member.voiceChannel.id);
-		inVoice = 1;
-		current_channel = message.member.voiceChannel;
+			console.log(message.member.voiceChannel.id);
+			inVoice = 1;
+			current_channel = message.member.voiceChannel;
 		
 		
-		current_channel.join().then(connection => {
-		var filePath = LOADDIR + "lol.mp3"
-		const dispatcher = connection.playFile(filePath);
-		console.log(filePath);
+			current_channel.join().then(connection => {
+			var filePath = LOADDIR + "lol.mp3"
+			const dispatcher = connection.playFile(filePath);
+			console.log(filePath);
 		
-		dispatcher.on("end", end => {
+				dispatcher.on("end", end => {
                     // leave the channel and log in the console that it left the voice channel (for debugging purposes)
 					if (current_channel == undefined)
 					{
@@ -189,10 +185,10 @@ bot.on('message', message => {
                     // no longer in voice
                     inVoice = 0;
 					}
-                });
+				});
 		
 		
-				});	
+			});	
 
 				
 				
@@ -240,11 +236,11 @@ bot.on('message', message => {
 	
 	
   
-}
-	}catch(err)
-	{
-		console.log(err)
-	}
+				}
+		}
+		catch(err){
+			console.log(err)
+		}
 	}
 	
 
