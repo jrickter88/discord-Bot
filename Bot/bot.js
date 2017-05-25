@@ -5,13 +5,8 @@ const Discord = require('discord.js');
 
 // Directory from which to load sound files. 
 var LOADDIR = "C:\\discord\\bot\\audio\\"
-
 var inVoice = 0;
-
-
-
 //const guild = new Discord.id;
-
 // create an instance of a Discord Client, and call it bot
 const bot = new Discord.Client();
 var current_channel = undefined;
@@ -31,15 +26,9 @@ function sleep(milliseconds) {
     }
   }
 }
-
-
-
-
-
+	//bannable offense
   var patt = /star citizen/;
-  
-
-  
+    
 // the ready event is vital, it means that your bot will only start reacting to information
 // from Discord _after_ ready is emitted.
 bot.on('ready', () => {
@@ -50,8 +39,7 @@ bot.on('ready', () => {
     return console.log(err);
 	}
 	var hashkey = data;
-  
-  
+    
 	var sethashkey = hashkey.split(/\r?\n/);
   
 		fs.readFile('./phrases.txt', 'utf8', function (err2,data2) {
@@ -62,7 +50,6 @@ bot.on('ready', () => {
 			var hashphrase = data2;
   
 			var sethashphrase = hashphrase.split(/\r?\n/);
-
   
 			for (var i in sethashphrase){
 	  
@@ -78,7 +65,6 @@ bot.on('ready', () => {
 
 });
 
-
 // create an event listener for messages
 bot.on('message', message => {
 	
@@ -87,8 +73,6 @@ bot.on('message', message => {
 
 	console.log(message.author.id);
 	console.log(message.content);
-
-
 
 	message.content = (message.content).toLowerCase();
 	var temp_mem = message.member;
@@ -100,23 +84,19 @@ bot.on('message', message => {
 	catch(err)	{
     var mem_id = undefined;
 	}
-
 	
 	if (message.author.bot === true){
-		
 		
 		console.log('ignoring Bot');
 	
 	}
 	
 	if (message.channel.type == 'dm'){
-		
-		
+	
 		console.log('ignoring private message from::: ' + message.channel.recipient.username + ": message::: " + message.content);
 		
 	}
 	else{
-		
 		
 		try{
 		//message content testing	
@@ -186,14 +166,10 @@ bot.on('message', message => {
                     inVoice = 0;
 					}
 				});
-		
-		
+				
 			});	
 
-				
-				
-
-		// If the bot is connected to voice...
+			// If the bot is connected to voice...
 			
 			// ...tell the user that you will play the file...
 			
