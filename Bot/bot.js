@@ -209,17 +209,14 @@ bot.on('message', message => {
 			{}
 			}
 	//speech police end
-	
-	
-  
-				}
+	  
+			    }
 		}
 		catch(err){
 			console.log(err)
 		}
 	}
 	
-
 	if (patt.test(message.content) === true) 
 		
 					{
@@ -234,8 +231,7 @@ bot.on('message', message => {
 					message.channel.sendMessage("Banning in 1");
 					sleep(1000);
 					message.channel.sendMessage("Banned, but not really because this is a test");
-		
-		
+				
 		}
 	//ping function
 
@@ -244,12 +240,6 @@ bot.on('message', message => {
     message.channel.sendMessage('pong');
 	}
 
-
-
-
-
-	
-	
 }
 );
 
